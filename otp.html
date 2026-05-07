@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTP Verification</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Segoe UI,sans-serif;
+
+background:
+radial-gradient(circle at top left,
+rgba(255,153,51,.25),
+transparent 35%),
+
+radial-gradient(circle at bottom right,
+rgba(19,136,8,.25),
+transparent 35%),
+
+linear-gradient(135deg,#f5f7ff,#ffffff);
+}
+
+.container{
+width:400px;
+background:white;
+padding:40px;
+border-radius:30px;
+box-shadow:0 10px 40px rgba(0,0,0,.08);
+text-align:center;
+}
+
+input{
+width:100%;
+height:55px;
+margin:12px 0;
+padding:0 15px;
+border-radius:15px;
+border:2px solid #dfe6ff;
+font-size:16px;
+}
+
+button{
+width:100%;
+height:55px;
+border:none;
+border-radius:15px;
+background:#2F6BFF;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>OTP Verification</h2>
+
+<input
+type="text"
+id="phone"
+placeholder="+91XXXXXXXXXX">
+
+<button onclick="sendOTP()">
+Send OTP
+</button>
+
+<input
+type="text"
+id="otp"
+placeholder="Enter OTP">
+
+<button onclick="verifyOTP()">
+Verify OTP
+</button>
+
+<div id="recaptcha-container"></div>
+
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+
+/* PASTE YOUR FIREBASE CONFIG BELOW */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyC4GsRIfuJ8Sy_kgQufC6u51cbfRf3AAGw",
+authDomain: "one-nation-one-vote.firebaseapp.com",
+projectId: "one-nation-one-vote",
+storageBucket: "one-nation-one-vote.appspot.com",
+messagingSenderId: "1056548388888",
+appId: "1:1056548388888:web:1234567890abcdef"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+window.recaptchaVerifier =
+new firebase.auth.RecaptchaVerifier(
+"recaptcha-container",
+{
+size:"normal"
+}
+);
+
+function sendOTP(){
+
+const phone =
+document.getElementById("phone").value;
+
+firebase.auth()
+.signInWithPhoneNumber(
+phone,
+window.recaptchaVerifier
+)
+
+.then(function(confirmationResult){
+
+window.confirmationResult =
+confirmationResult;
+
+alert("OTP Sent");
+
+})
+
+.catch(function(error){
+
+alert(error.message);
+
+});
+
+}
+
+function verifyOTP(){
+
+const otp =
+document.getElementById("otp").value;
+
+window.confirmationResult.confirm(otp)
+
+.then(function(){
+
+alert("Verified Successfully");
+
+window.location.href="verify.html";
+
+})
+
+.catch(function(){
+
+alert("Wrong OTP");
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

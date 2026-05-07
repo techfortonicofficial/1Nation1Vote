@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>1 Nation 1 Vote</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at top left,
+rgba(255,153,51,.25),
+transparent 35%),
+
+radial-gradient(circle at bottom right,
+rgba(19,136,8,.25),
+transparent 35%),
+
+linear-gradient(135deg,#f5f7ff,#ffffff);
+
+min-height:100vh;
+padding-bottom:40px;
+
+transition:.3s;
+
+animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* TOPBAR */
+
+.topbar{
+
+width:100%;
+height:60px;
+
+background:#0b3c6d;
+
+padding:0 20px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+color:white;
+
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.tools{
+display:flex;
+gap:10px;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.tools button{
+
+height:38px;
+padding:0 16px;
+
+border:none;
+border-radius:12px;
+
+background:rgba(255,255,255,.15);
+
+color:white;
+
+cursor:pointer;
+
+font-size:14px;
+
+transition:.3s;
+}
+
+.tools button:hover{
+background:rgba(255,255,255,.25);
+}
+
+/* LANGUAGE */
+
+.language-box{
+position:relative;
+}
+
+.language-menu{
+
+position:absolute;
+
+top:48px;
+left:0;
+
+width:220px;
+
+max-height:350px;
+
+overflow-y:auto;
+
+background:white;
+
+border-radius:20px;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.15);
+
+display:none;
+
+z-index:999;
+}
+
+.language-menu div{
+
+padding:14px 18px;
+
+cursor:pointer;
+
+transition:.2s;
+
+color:#111;
+}
+
+.language-menu div:hover{
+background:#f2f5ff;
+}
+
+/* HEADER */
+
+.header{
+
+width:92%;
+max-width:1400px;
+
+height:85px;
+
+background:white;
+
+margin:25px auto;
+
+border-radius:30px;
+
+padding:0 35px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.05);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo img{
+width:52px;
+height:52px;
+}
+
+.logo h2{
+color:#0b3c6d;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.avatar{
+
+width:45px;
+height:45px;
+
+border-radius:50%;
+
+background:#2F6BFF;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+
+width:92%;
+max-width:1400px;
+
+margin:auto;
+
+padding:55px;
+
+border-radius:35px;
+
+background:
+linear-gradient(135deg,
+#0b3c6d,
+#2F6BFF);
+
+color:white;
+
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+right:-100px;
+top:-100px;
+
+width:300px;
+height:300px;
+
+border-radius:50%;
+
+background:
+rgba(255,255,255,.08);
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.7;
+opacity:.9;
+max-width:700px;
+}
+
+.hero-btn{
+
+margin-top:25px;
+
+height:55px;
+padding:0 28px;
+
+border:none;
+border-radius:16px;
+
+background:white;
+color:#0b3c6d;
+
+font-size:16px;
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.hero-btn:hover{
+transform:translateY(-3px);
+}
+
+/* GRID */
+
+.grid{
+
+width:92%;
+max-width:1400px;
+
+margin:30px auto;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+}
+
+.card{
+
+background:white;
+
+padding:30px;
+
+border-radius:30px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.05);
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.icon{
+
+width:70px;
+height:70px;
+
+border-radius:22px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:32px;
+
+margin-bottom:20px;
+}
+
+.blue .icon{
+background:#eef3ff;
+color:#2F6BFF;
+}
+
+.green .icon{
+background:#ebfff0;
+color:#138808;
+}
+
+.orange .icon{
+background:#fff1e5;
+color:#ff8a00;
+}
+
+.purple .icon{
+background:#f3ebff;
+color:#7b3cff;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+line-height:1.6;
+}
+
+/* FOOTER */
+
+.footer{
+
+width:92%;
+max-width:1400px;
+
+margin:auto;
+
+padding:25px;
+
+background:white;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.05);
+}
+
+/* HIGH CONTRAST */
+
+.high-contrast{
+background:black !important;
+color:white !important;
+}
+
+.high-contrast .card,
+.high-contrast .header,
+.high-contrast .hero,
+.high-contrast .footer{
+background:#111 !important;
+color:white !important;
+}
+
+.high-contrast p,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3{
+color:white !important;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+padding:35px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.header{
+padding:0 20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="tools">
+
+<!-- LANGUAGE -->
+
+<div class="language-box">
+
+<button onclick="toggleLanguages(event)"
+id="langBtn">
+
+🌐 English ▼
+
+</button>
+
+<div class="language-menu"
+id="languageMenu">
+
+<div onclick="setLanguage('english')">English</div>
+<div onclick="setLanguage('hindi')">हिन्दी</div>
+<div onclick="setLanguage('odia')">ଓଡ଼ିଆ</div>
+<div onclick="setLanguage('bengali')">বাংলা</div>
+<div onclick="setLanguage('tamil')">தமிழ்</div>
+<div onclick="setLanguage('telugu')">తెలుగు</div>
+<div onclick="setLanguage('marathi')">मराठी</div>
+<div onclick="setLanguage('gujarati')">ગુજરાતી</div>
+<div onclick="setLanguage('punjabi')">ਪੰਜਾਬੀ</div>
+<div onclick="setLanguage('malayalam')">മലയാളം</div>
+<div onclick="setLanguage('kannada')">ಕನ್ನಡ</div>
+<div onclick="setLanguage('assamese')">অসমীয়া</div>
+<div onclick="setLanguage('urdu')">اردو</div>
+<div onclick="setLanguage('sanskrit')">संस्कृतम्</div>
+<div onclick="setLanguage('konkani')">कोंकणी</div>
+<div onclick="setLanguage('kashmiri')">कॉशुर</div>
+<div onclick="setLanguage('manipuri')">মৈতৈলোন্</div>
+
+</div>
+
+</div>
+
+<button onclick="toggleVoice()">
+🔊 Screen Reader
+</button>
+
+<button onclick="increaseFont()">
+A+
+</button>
+
+<button onclick="decreaseFont()">
+A-
+</button>
+
+<button onclick="toggleContrast()">
+🌓 Contrast
+</button>
+
+</div>
+
+<div>
+Accessibility Enabled
+</div>
+
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2 id="mainTitle">
+1 Nation 1 Vote
+</h2>
+
+</div>
+
+<div class="profile">
+
+<div>
+<b id="portalText">
+Citizen Portal
+</b><br>
+
+<small id="secureText">
+Secure Digital Voting
+</small>
+</div>
+
+<div class="avatar">
+A
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1 id="heroTitle">
+Welcome to Digital Democracy
+</h1>
+
+<p id="heroText">
+A secure national platform designed to modernize voting through safe, transparent, and accessible digital participation.
+</p>
+
+<button class="hero-btn"
+id="heroBtn" onclick="window.open('https://voters.eci.gov.in/', '_blank')">
+
+Access National Voting Services
+
+</button>
+
+</div>
+
+<!-- GRID -->
+
+<div class="grid">
+
+<div class="card blue">
+
+<div class="icon">🗳️</div>
+
+<h3 id="card1">
+Cast Vote
+</h3>
+
+<p id="cardText1">
+Securely cast your vote digitally.
+</p>
+
+</div>
+
+<div class="card green">
+
+<div class="icon">✔</div>
+
+<h3 id="card2">
+Verify Eligibility
+</h3>
+
+<p id="cardText2">
+Check constituency and eligibility.
+</p>
+
+</div>
+
+<div class="card orange" onclick="window.open('https://www.eci.gov.in/election-management', '_blank')">
+
+<div class="icon">📍</div>
+
+<h3 id="card3">
+Polling Info
+</h3>
+
+<p id="cardText3">
+View election and constituency updates.
+</p>
+
+</div>
+
+<div class="card purple" onclick="window.open('https://results.eci.gov.in/ResultAcGenMay2026/index.htm', '_blank')">
+
+<div class="icon">📊</div>
+
+<h3 id="card4">
+Election Results
+</h3>
+
+<p id="cardText4">
+Track official live counting results.
+</p>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer"
+id="footerText">
+
+© 2026 1 Nation 1 Vote • Secure • Transparent • Accessible
+
+</div>
+
+<script>
+
+/* FONT */
+
+let currentFont = 16;
+
+function increaseFont(){
+
+currentFont += 1;
+
+document.body.style.fontSize =
+currentFont + "px";
+
+}
+
+function decreaseFont(){
+
+currentFont -= 1;
+
+document.body.style.fontSize =
+currentFont + "px";
+
+}
+
+/* CONTRAST */
+
+function toggleContrast(){
+
+document.body.classList.toggle(
+"high-contrast"
+);
+
+}
+
+/* SCREEN READER */
+
+let speaking = false;
+
+function toggleVoice(){
+
+if(!('speechSynthesis' in window)){
+
+alert("Screen reader not supported");
+
+return;
+
+}
+
+if(speaking){
+
+window.speechSynthesis.cancel();
+
+speaking = false;
+
+return;
+
+}
+
+const text =
+document.body.innerText;
+
+const speech =
+new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-IN";
+speech.rate = 1;
+speech.pitch = 1;
+
+window.speechSynthesis.speak(speech);
+
+speaking = true;
+
+speech.onend = () => {
+
+speaking = false;
+
+};
+
+}
+
+/* LANGUAGE MENU */
+
+function toggleLanguages(event){
+
+event.stopPropagation();
+
+const menu =
+document.getElementById(
+"languageMenu"
+);
+
+menu.style.display =
+menu.style.display === "block"
+? "none"
+: "block";
+
+}
+
+/* CHANGE LANGUAGE */
+
+function setLanguage(lang){
+
+localStorage.setItem(
+"lang",
+lang
+);
+
+applyLanguage();
+
+document.getElementById(
+"languageMenu"
+).style.display = "none";
+
+}
+
+/* APPLY LANGUAGE */
+
+function applyLanguage(){
+
+const lang =
+localStorage.getItem("lang") || "english";
+
+const btn =
+document.getElementById("langBtn");
+
+/* ENGLISH */
+
+const translations = {
+
+english:{
+btn:"🌐 English ▼",
+heroTitle:"Welcome to Digital Democracy",
+heroText:"A secure national platform designed to modernize voting through safe, transparent, and accessible digital participation.",
+heroBtn:"Access National Voting Services",
+card1:"Cast Vote",
+card2:"Verify Eligibility",
+card3:"Polling Info",
+card4:"Election Results",
+cardText1:"Securely cast your vote digitally.",
+cardText2:"Check constituency and eligibility.",
+cardText3:"View election and constituency updates.",
+cardText4:"Track official live counting results."
+},
+
+hindi:{
+btn:"🌐 हिन्दी ▼",
+heroTitle:"डिजिटल लोकतंत्र में आपका स्वागत है",
+heroText:"एक सुरक्षित राष्ट्रीय मंच जो डिजिटल मतदान को आधुनिक बनाता है।",
+heroBtn:"राष्ट्रीय मतदान सेवाएँ खोलें",
+card1:"वोट करें",
+card2:"पात्रता जांचें",
+card3:"मतदान जानकारी",
+card4:"चुनाव परिणाम",
+cardText1:"सुरक्षित डिजिटल मतदान करें।",
+cardText2:"पात्रता और निर्वाचन क्षेत्र जांचें।",
+cardText3:"मतदान से जुड़ी जानकारी देखें।",
+cardText4:"लाइव चुनाव परिणाम देखें।"
+},
+
+odia:{
+btn:"🌐 ଓଡ଼ିଆ ▼",
+heroTitle:"ଡିଜିଟାଲ ଗଣତନ୍ତ୍ରକୁ ସ୍ୱାଗତ",
+heroText:"ଏକ ସୁରକ୍ଷିତ ଜାତୀୟ ଡିଜିଟାଲ ଭୋଟିଂ ପ୍ଲାଟଫର୍ମ।",
+heroBtn:"ଜାତୀୟ ଭୋଟିଂ ସେବା ଖୋଲନ୍ତୁ",
+card1:"ଭୋଟ ଦିଅନ୍ତୁ",
+card2:"ଯୋଗ୍ୟତା ଯାଞ୍ଚ",
+card3:"ମତଦାନ ସୂଚନା",
+card4:"ନିର୍ବାଚନ ଫଳାଫଳ",
+cardText1:"ସୁରକ୍ଷିତ ଡିଜିଟାଲ ଭୋଟ କରନ୍ତୁ।",
+cardText2:"ଯୋଗ୍ୟତା ଯାଞ୍ଚ କରନ୍ତୁ।",
+cardText3:"ନିର୍ବାଚନ ସୂଚନା ଦେଖନ୍ତୁ।",
+cardText4:"ଲାଇଭ ଫଳାଫଳ ଦେଖନ୍ତୁ।"
+}
+
+};
+
+const t =
+translations[lang] ||
+translations.english;
+
+btn.innerText = t.btn;
+
+document.getElementById("heroTitle").innerText = t.heroTitle;
+document.getElementById("heroText").innerText = t.heroText;
+document.getElementById("heroBtn").innerText = t.heroBtn;
+
+document.getElementById("card1").innerText = t.card1;
+document.getElementById("card2").innerText = t.card2;
+document.getElementById("card3").innerText = t.card3;
+document.getElementById("card4").innerText = t.card4;
+
+document.getElementById("cardText1").innerText = t.cardText1;
+document.getElementById("cardText2").innerText = t.cardText2;
+document.getElementById("cardText3").innerText = t.cardText3;
+document.getElementById("cardText4").innerText = t.cardText4;
+
+}
+
+/* AUTO LOAD */
+
+applyLanguage();
+
+/* CLOSE MENU */
+
+document.addEventListener(
+"click",
+function(){
+
+document.getElementById(
+"languageMenu"
+).style.display = "none";
+
+}
+);
+
+</script>
+
+</body>
+</html>
