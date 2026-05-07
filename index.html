@@ -104,6 +104,7 @@
         max-width: 1200px;
         margin: 0 auto 50px;
         padding: 0 20px;
+        justify-items: center;
       }
 
       .language-card {
@@ -115,6 +116,13 @@
         transition: all 0.3s ease;
         border: 2px solid transparent;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 180px;
+        min-height: 160px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       .language-card:hover {
@@ -286,6 +294,13 @@
         display: none;
       }
 
+      .language-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
       .footer {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 20px 20px 0 0;
@@ -373,140 +388,174 @@
     </div>
 
     <div class="languages-container">
-      <div class="language-card lang-en active" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-en active" onclick="selectLanguage('english')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">A</div>
-        <div class="language-name">English</div>
-        <div class="language-code">English</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">A</div>
+          <div class="language-name">English</div>
+          <div class="language-code">English</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-hi" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-hi" onclick="selectLanguage('hindi')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">अ</div>
-        <div class="language-name">हिन्दी</div>
-        <div class="language-code">Hindi</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">अ</div>
+          <div class="language-name">हिन्दी</div>
+          <div class="language-code">Hindi</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-bn" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-bn" onclick="selectLanguage('bengali')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">অ</div>
-        <div class="language-name">বাংলা</div>
-        <div class="language-code">Bangla</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">অ</div>
+          <div class="language-name">বাংলা</div>
+          <div class="language-code">Bangla</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-od" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-od" onclick="selectLanguage('odia')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">ଓ</div>
-        <div class="language-name">ଓଡ଼ିଆ</div>
-        <div class="language-code">Odia</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">ଓ</div>
+          <div class="language-name">ଓଡ଼ିଆ</div>
+          <div class="language-code">Odia</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-ta" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-ta" onclick="selectLanguage('tamil')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">அ</div>
-        <div class="language-name">தமிழ்</div>
-        <div class="language-code">Tamil</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">அ</div>
+          <div class="language-name">தமிழ்</div>
+          <div class="language-code">Tamil</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-te" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-te" onclick="selectLanguage('telugu')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">అ</div>
-        <div class="language-name">తెలుగు</div>
-        <div class="language-code">Telugu</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">అ</div>
+          <div class="language-name">తెలుగు</div>
+          <div class="language-code">Telugu</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-as" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-as" onclick="selectLanguage('assamese')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">অ</div>
-        <div class="language-name">অসমীয়া</div>
-        <div class="language-code">Assamese</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">অ</div>
+          <div class="language-name">অসমীয়া</div>
+          <div class="language-code">Assamese</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-gu" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-gu" onclick="selectLanguage('gujarati')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">ગ</div>
-        <div class="language-name">ગુજરાતી</div>
-        <div class="language-code">Gujarati</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">ગ</div>
+          <div class="language-name">ગુજરાતી</div>
+          <div class="language-code">Gujarati</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-kn" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-kn" onclick="selectLanguage('kannada')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">ಕ</div>
-        <div class="language-name">ಕನ್ನಡ</div>
-        <div class="language-code">Kannada</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">ಕ</div>
+          <div class="language-name">ಕನ್ನಡ</div>
+          <div class="language-code">Kannada</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-ko" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-ko" onclick="selectLanguage('konkani')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">क</div>
-        <div class="language-name">कोंकणी</div>
-        <div class="language-code">Konkani</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">क</div>
+          <div class="language-name">कोंकणी</div>
+          <div class="language-code">Konkani</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-ml" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-ml" onclick="selectLanguage('malayalam')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">മ</div>
-        <div class="language-name">മലയാളം</div>
-        <div class="language-code">Malayalam</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">മ</div>
+          <div class="language-name">മലയാളം</div>
+          <div class="language-code">Malayalam</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-mr" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-mr" onclick="selectLanguage('marathi')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">म</div>
-        <div class="language-name">मराठी</div>
-        <div class="language-code">Marathi</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">म</div>
+          <div class="language-name">मराठी</div>
+          <div class="language-code">Marathi</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-ne" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-ne" onclick="selectLanguage('english')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">न</div>
-        <div class="language-name">नेपाली</div>
-        <div class="language-code">Nepali</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">न</div>
+          <div class="language-name">नेपाली</div>
+          <div class="language-code">Nepali</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-pa" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-pa" onclick="selectLanguage('punjabi')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">ਪ</div>
-        <div class="language-name">ਪੰਜਾਬੀ</div>
-        <div class="language-code">Punjabi</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">ਪ</div>
+          <div class="language-name">ਪੰਜਾਬੀ</div>
+          <div class="language-code">Punjabi</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-sa" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-sa" onclick="selectLanguage('sanskrit')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">स</div>
-        <div class="language-name">संस्कृत</div>
-        <div class="language-code">Sanskrit</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">स</div>
+          <div class="language-name">संस्कृत</div>
+          <div class="language-code">Sanskrit</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-sd" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-sd" onclick="selectLanguage('english')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">س</div>
-        <div class="language-name">سنڌي</div>
-        <div class="language-code">Sindhi</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">س</div>
+          <div class="language-name">سنڌي</div>
+          <div class="language-code">Sindhi</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
 
-      <div class="language-card lang-ur" onclick=" document.body.classList.add('fade-out'); setTimeout(() => { window.location.href='otp.html'; }, 500); ">
+      <div class="language-card lang-ur" onclick="selectLanguage('urdu')">
         <div class="checkmark">✓</div>
-        <div class="language-icon">ا</div>
-        <div class="language-name">اردو</div>
-        <div class="language-code">Urdu</div>
-        <div class="language-arrow">→</div>
+        <div class="language-card-content">
+          <div class="language-icon">ا</div>
+          <div class="language-name">اردو</div>
+          <div class="language-code">Urdu</div>
+          <div class="language-arrow">→</div>
+        </div>
       </div>
     </div>
 
@@ -518,6 +567,12 @@
     </div>
     </div>
     <script>
+      function selectLanguage(lang) {
+        localStorage.setItem('lang', lang);
+        document.body.classList.add('fade-out');
+        setTimeout(() => { window.location.href='otp.html'; }, 500);
+      }
+
       document.querySelectorAll('.language-card').forEach(card => {
         card.addEventListener('click', function() {
           document.querySelectorAll('.language-card').forEach(c => c.classList.remove('active'));

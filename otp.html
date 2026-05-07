@@ -65,14 +65,14 @@ margin-top:10px;
 
 <div class="container">
 
-<h2>OTP Verification</h2>
+<h2 id="otpTitle">OTP Verification</h2>
 
 <input
 type="text"
 id="phone"
 placeholder="+91XXXXXXXXXX">
 
-<button onclick="sendOTP()">
+<button onclick="sendOTP()" id="sendBtn">
 Send OTP
 </button>
 
@@ -81,7 +81,7 @@ type="text"
 id="otp"
 placeholder="Enter OTP">
 
-<button onclick="verifyOTP()">
+<button onclick="verifyOTP()" id="verifyBtn">
 Verify OTP
 </button>
 
@@ -135,7 +135,7 @@ window.recaptchaVerifier
 window.confirmationResult =
 confirmationResult;
 
-alert("OTP Sent");
+alert(getTranslation("otpSent"));
 
 })
 
@@ -156,7 +156,7 @@ window.confirmationResult.confirm(otp)
 
 .then(function(){
 
-alert("Verified Successfully");
+alert(getTranslation("verified"));
 
 window.location.href="verify.html";
 
@@ -164,11 +164,188 @@ window.location.href="verify.html";
 
 .catch(function(){
 
-alert("Wrong OTP");
+alert(getTranslation("wrongOtp"));
 
 });
 
 }
+
+/* LANGUAGE */
+
+function getTranslation(key){
+
+const lang = localStorage.getItem("lang") || "english";
+
+const translations = {
+
+english:{
+otpTitle:"OTP Verification",
+sendBtn:"Send OTP",
+verifyBtn:"Verify OTP",
+otpSent:"OTP Sent",
+verified:"Verified Successfully",
+wrongOtp:"Wrong OTP"
+},
+
+hindi:{
+otpTitle:"ओटीपी सत्यापन",
+sendBtn:"ओटीपी भेजें",
+verifyBtn:"ओटीपी सत्यापित करें",
+otpSent:"ओटीपी भेजा गया",
+verified:"सफलतापूर्वक सत्यापित",
+wrongOtp:"गलत ओटीपी"
+},
+
+odia:{
+otpTitle:"ଓଟିପି ଯାଞ୍ଚ",
+sendBtn:"ଓଟିପି ପଠାନ୍ତୁ",
+verifyBtn:"ଓଟିପି ଯାଞ୍ଚ କରନ୍ତୁ",
+otpSent:"ଓଟିପି ପଠାଗଲା",
+verified:"ସଫଳତାପୂର୍ବକ ଯାଞ୍ଚ ହୋଇଛି",
+wrongOtp:"ଭୁଲ୍ ଓଟିପି"
+},
+
+bengali:{
+otpTitle:"ওটিপি যাচাই",
+sendBtn:"ওটিপি পাঠান",
+verifyBtn:"ওটিপি যাচাই করুন",
+otpSent:"ওটিপি পাঠানো হয়েছে",
+verified:"সফলভাবে যাচাই করা হয়েছে",
+wrongOtp:"ভুল ওটিপি"
+},
+
+tamil:{
+otpTitle:"OTP சரிபார்ப்பு",
+sendBtn:"OTP அனுப்பு",
+verifyBtn:"OTP சரிபார்க்கவும்",
+otpSent:"OTP அனுப்பப்பட்டது",
+verified:"வெற்றிகரமாக சரிபார்க்கப்பட்டது",
+wrongOtp:"தவறான OTP"
+},
+
+telugu:{
+otpTitle:"OTP ధృవీకరణ",
+sendBtn:"OTP పంపండి",
+verifyBtn:"OTP ధృవీకరించండి",
+otpSent:"OTP పంపబడింది",
+verified:"విజయవంతంగా ధృవీకరించబడింది",
+wrongOtp:"తప్పు OTP"
+},
+
+marathi:{
+otpTitle:"OTP पडताळणी",
+sendBtn:"OTP पाठवा",
+verifyBtn:"OTP पडताळा",
+otpSent:"OTP पाठवला",
+verified:"यशस्वीरित्या पडताळले",
+wrongOtp:"चुकीचे OTP"
+},
+
+gujarati:{
+otpTitle:"OTP ચકાસણી",
+sendBtn:"OTP મોકલો",
+verifyBtn:"OTP ચકાસો",
+otpSent:"OTP મોકલ્યો",
+verified:"સફળતાપૂર્વક ચકાસાયું",
+wrongOtp:"ખોટું OTP"
+},
+
+punjabi:{
+otpTitle:"OTP ਤਸਦੀਕ",
+sendBtn:"OTP ਭੇਜੋ",
+verifyBtn:"OTP ਤਸਦੀਕ ਕਰੋ",
+otpSent:"OTP ਭੇਜਿਆ ਗਿਆ",
+verified:"ਸਫਲਤਾਪੂਰਵਕ ਤਸਦੀਕ ਹੋਈ",
+wrongOtp:"ਗਲਤ OTP"
+},
+
+malayalam:{
+otpTitle:"OTP സ്ഥിരീകരണം",
+sendBtn:"OTP അയയ്ക്കുക",
+verifyBtn:"OTP സ്ഥിരീകരിക്കുക",
+otpSent:"OTP അയച്ചു",
+verified:"വിജയകരമായി സ്ഥിരീകരിച്ചു",
+wrongOtp:"തെറ്റായ OTP"
+},
+
+kannada:{
+otpTitle:"OTP ದೃಢೀಕರಣ",
+sendBtn:"OTP ಕಳುಹಿಸಿ",
+verifyBtn:"OTP ದೃಢೀಕರಿಸಿ",
+otpSent:"OTP ಕಳುಹಿಸಲಾಗಿದೆ",
+verified:"ಯಶಸ್ವಿಯಾಗಿ ದೃಢೀಕರಿಸಲಾಗಿದೆ",
+wrongOtp:"ತಪ್ಪಾದ OTP"
+},
+
+assamese:{
+otpTitle:"OTP পৰীক্ষা",
+sendBtn:"OTP পঠিয়াওক",
+verifyBtn:"OTP পৰীক্ষা কৰক",
+otpSent:"OTP পঠিওৱা হ'ল",
+verified:"সফলভাৱে পৰীক্ষা কৰা হ'ল",
+wrongOtp:"ভুল OTP"
+},
+
+urdu:{
+otpTitle:"OTP کی تصدیق",
+sendBtn:"OTP بھیجیں",
+verifyBtn:"OTP کی تصدیق کریں",
+otpSent:"OTP بھیجا گیا",
+verified:"کامیابی سے تصدیق شدہ",
+wrongOtp:"غلط OTP"
+},
+
+sanskrit:{
+otpTitle:"OTP प्रमाणीकरणम्",
+sendBtn:"OTP प्रेषयन्तु",
+verifyBtn:"OTP प्रमाणयन्तु",
+otpSent:"OTP प्रेषितम्",
+verified:"सफलतया प्रमाणितम्",
+wrongOtp:"अशुद्धम् OTP"
+},
+
+konkani:{
+otpTitle:"OTP पडताळणी",
+sendBtn:"OTP धाडा",
+verifyBtn:"OTP पडताळा",
+otpSent:"OTP धाडला",
+verified:"यशस्वीरीत्या पडताळलें",
+wrongOtp:"चुकीचे OTP"
+},
+
+kashmiri:{
+otpTitle:"OTP تصدیق",
+sendBtn:"OTP بھیجیں",
+verifyBtn:"OTP تصدیق کٲریں",
+otpSent:"OTP بھیجا گیا",
+verified:"کامیابی سان تصدیق",
+wrongOtp:"غلط OTP"
+},
+
+manipuri:{
+otpTitle:"OTP পৰীক্ষা",
+sendBtn:"OTP পঠাওক",
+verifyBtn:"OTP পৰীক্ষা কৰক",
+otpSent:"OTP পঠিওৱা হ'ল",
+verified:"সফলভাৱে পৰীক্ষা কৰা হ'ল",
+wrongOtp:"ভুল OTP"
+}
+
+};
+
+return translations[lang]?.[key] || translations.english[key];
+
+}
+
+function applyLanguage(){
+
+document.getElementById("otpTitle").innerText = getTranslation("otpTitle");
+document.getElementById("sendBtn").innerText = getTranslation("sendBtn");
+document.getElementById("verifyBtn").innerText = getTranslation("verifyBtn");
+
+}
+
+applyLanguage();
 
 </script>
 

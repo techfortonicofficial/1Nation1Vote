@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cast Your Vote</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at top left,
+rgba(255,153,51,.25),
+transparent 35%),
+
+radial-gradient(circle at bottom right,
+rgba(19,136,8,.25),
+transparent 35%),
+
+linear-gradient(135deg,#f5f7ff,#ffffff);
+
+min-height:100vh;
+padding:30px;
+}
+
+.container{
+
+max-width:1200px;
+margin:auto;
+}
+
+.header{
+
+background:white;
+padding:35px;
+border-radius:30px;
+margin-bottom:25px;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.05);
+
+text-align:center;
+}
+
+.header h1{
+
+color:#0b3c6d;
+font-size:40px;
+margin-bottom:10px;
+}
+
+.header p{
+
+color:#666;
+font-size:17px;
+}
+
+.vote-section{
+
+background:white;
+
+padding:35px;
+
+border-radius:30px;
+
+margin-bottom:25px;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.05);
+}
+
+.vote-section h2{
+
+margin-bottom:25px;
+color:#0b3c6d;
+}
+
+.party-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+}
+
+.party-card{
+
+border:2px solid #eee;
+
+border-radius:24px;
+
+padding:25px;
+
+cursor:pointer;
+
+transition:.3s;
+
+display:flex;
+align-items:center;
+gap:18px;
+
+background:#fff;
+}
+
+.party-card:hover{
+
+transform:translateY(-5px);
+
+border-color:#2F6BFF;
+
+box-shadow:
+0 10px 25px rgba(47,107,255,.12);
+}
+
+.party-card input{
+
+transform:scale(1.4);
+cursor:pointer;
+}
+
+.party-symbol{
+
+width:60px;
+height:60px;
+
+border-radius:18px;
+
+background:#f4f7ff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:32px;
+}
+
+.party-name{
+
+font-size:18px;
+font-weight:600;
+}
+
+.select-box{
+
+margin-bottom:25px;
+}
+
+.select-box label{
+
+display:block;
+margin-bottom:10px;
+font-weight:600;
+}
+
+select{
+
+width:100%;
+height:55px;
+
+border:1px solid #ddd;
+border-radius:16px;
+
+padding:0 18px;
+
+font-size:16px;
+}
+
+.submit-box{
+
+text-align:center;
+margin-top:30px;
+}
+
+.vote-btn{
+
+height:60px;
+padding:0 40px;
+
+border:none;
+border-radius:18px;
+
+background:
+linear-gradient(135deg,
+#0b3c6d,
+#2F6BFF);
+
+color:white;
+
+font-size:18px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.vote-btn:hover{
+
+transform:translateY(-4px);
+}
+
+.success{
+
+margin-top:25px;
+
+background:#e9fff0;
+
+border-left:6px solid #138808;
+
+padding:22px;
+
+border-radius:20px;
+
+display:none;
+}
+
+.footer{
+
+text-align:center;
+margin-top:25px;
+color:#666;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.header h1{
+font-size:32px;
+}
+
+.party-card{
+padding:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<h1>
+🗳️ Cast Your Vote
+</h1>
+
+<p>
+Secure Digital Voting Portal for MP and MLA Elections
+</p>
+
+</div>
+
+<!-- MP VOTING -->
+
+<div class="vote-section">
+
+<h2>
+Vote for Member of Parliament (MP)
+</h2>
+
+<div class="party-grid">
+
+<label class="party-card">
+
+<input
+type="radio"
+name="mpVote"
+value="BJP">
+
+<div class="party-symbol">
+🪷
+</div>
+
+<div class="party-name">
+BJP
+</div>
+
+</label>
+
+<label class="party-card">
+
+<input
+type="radio"
+name="mpVote"
+value="INC">
+
+<div class="party-symbol">
+✋
+</div>
+
+<div class="party-name">
+INC
+</div>
+
+</label>
+
+<label class="party-card">
+
+<input
+type="radio"
+name="mpVote"
+value="AAP">
+
+<div class="party-symbol">
+🧹
+</div>
+
+<div class="party-name">
+AAP
+</div>
+
+</label>
+
+</div>
+
+</div>
+
+<!-- MLA VOTING -->
+
+<div class="vote-section">
+
+<h2>
+Vote for MLA
+</h2>
+
+<div class="select-box">
+
+<label>
+Select State
+</label>
+
+<select id="state"
+onchange="loadMLAParties()">
+
+<option value="">
+-- Choose State --
+</option>
+
+<option value="Andhra Pradesh">
+Andhra Pradesh
+</option>
+
+<option value="Arunachal Pradesh">
+Arunachal Pradesh
+</option>
+
+<option value="Assam">
+Assam
+</option>
+
+<option value="Bihar">
+Bihar
+</option>
+
+<option value="Chhattisgarh">
+Chhattisgarh
+</option>
+
+<option value="Goa">
+Goa
+</option>
+
+<option value="Gujarat">
+Gujarat
+</option>
+
+<option value="Haryana">
+Haryana
+</option>
+
+<option value="Himachal Pradesh">
+Himachal Pradesh
+</option>
+
+<option value="Jharkhand">
+Jharkhand
+</option>
+
+<option value="Karnataka">
+Karnataka
+</option>
+
+<option value="Kerala">
+Kerala
+</option>
+
+<option value="Madhya Pradesh">
+Madhya Pradesh
+</option>
+
+<option value="Maharashtra">
+Maharashtra
+</option>
+
+<option value="Manipur">
+Manipur
+</option>
+
+<option value="Meghalaya">
+Meghalaya
+</option>
+
+<option value="Mizoram">
+Mizoram
+</option>
+
+<option value="Nagaland">
+Nagaland
+</option>
+
+<option value="Odisha">
+Odisha
+</option>
+
+<option value="Punjab">
+Punjab
+</option>
+
+<option value="Rajasthan">
+Rajasthan
+</option>
+
+<option value="Sikkim">
+Sikkim
+</option>
+
+<option value="Tamil Nadu">
+Tamil Nadu
+</option>
+
+<option value="Telangana">
+Telangana
+</option>
+
+<option value="Tripura">
+Tripura
+</option>
+
+<option value="Uttar Pradesh">
+Uttar Pradesh
+</option>
+
+<option value="Uttarakhand">
+Uttarakhand
+</option>
+
+<option value="West Bengal">
+West Bengal
+</option>
+
+</select>
+
+</div>
+
+<div
+class="party-grid"
+id="mlaParties">
+
+</div>
+
+</div>
+
+<!-- SUBMIT -->
+
+<div class="submit-box">
+
+<button
+class="vote-btn"
+onclick="castVote()">
+
+Submit Vote
+
+</button>
+
+<div
+class="success"
+id="successBox">
+
+<h3>
+✅ Vote Successfully Recorded
+</h3>
+
+<p>
+Your vote has been securely submitted to the election database.
+</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 One Nation One Vote
+
+</div>
+
+</div>
+
+<script>
+
+/* MLA PARTY DATA */
+
+const stateParties = {
+
+"Odisha":[
+
+{
+name:"BJD",
+symbol:"🐚"
+},
+
+{
+name:"BJP",
+symbol:"🪷"
+},
+
+{
+name:"INC",
+symbol:"✋"
+}
+
+],
+
+"Tamil Nadu":[
+
+{
+name:"DMK",
+symbol:"☀️"
+},
+
+{
+name:"AIADMK",
+symbol:"🍃"
+}
+
+],
+
+"Delhi":[
+
+{
+name:"AAP",
+symbol:"🧹"
+},
+
+{
+name:"BJP",
+symbol:"🪷"
+}
+
+],
+
+"West Bengal":[
+
+{
+name:"TMC",
+symbol:"🌱"
+},
+
+{
+name:"BJP",
+symbol:"🪷"
+}
+
+]
+
+};
+
+/* LOAD MLA PARTIES */
+
+function loadMLAParties(){
+
+const state =
+document.getElementById("state").value;
+
+const container =
+document.getElementById("mlaParties");
+
+container.innerHTML = "";
+
+if(!stateParties[state]){
+
+return;
+
+}
+
+stateParties[state].forEach(party => {
+
+container.innerHTML += `
+
+<label class="party-card">
+
+<input
+type="radio"
+name="mlaVote"
+value="${party.name}">
+
+<div class="party-symbol">
+${party.symbol}
+</div>
+
+<div class="party-name">
+${party.name}
+</div>
+
+</label>
+
+`;
+
+});
+
+}
+
+/* CAST VOTE */
+
+function castVote(){
+
+const mpVote =
+document.querySelector(
+'input[name="mpVote"]:checked'
+);
+
+const mlaVote =
+document.querySelector(
+'input[name="mlaVote"]:checked'
+);
+
+const state =
+document.getElementById("state").value;
+
+if(!mpVote){
+
+alert(
+"Please select MP vote"
+);
+
+return;
+
+}
+
+if(!state){
+
+alert(
+"Please select state"
+);
+
+return;
+
+}
+
+if(!mlaVote){
+
+alert(
+"Please select MLA vote"
+);
+
+return;
+
+}
+
+/* VOTE DATA */
+
+const voteData = {
+
+mpVote: mpVote.value,
+
+mlaVote: mlaVote.value,
+
+state: state,
+
+timestamp:
+new Date().toISOString()
+
+};
+
+console.log(
+"Vote Submitted:",
+voteData
+);
+
+/* SUCCESS UI */
+
+document.getElementById(
+"successBox"
+).style.display = "block";
+
+/* BACKEND CONNECTION */
+
+/*
+
+Replace this later with:
+
+fetch("YOUR_BACKEND_URL",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(voteData)
+
+})
+
+*/
+
+}
+
+</script>
+
+</body>
+</html>

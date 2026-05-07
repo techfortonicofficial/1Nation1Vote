@@ -63,35 +63,235 @@ cursor:pointer;
 
 <div class="card">
 
-<h2>Citizen Verification</h2>
+<h2 id="verifyTitle">Citizen Verification</h2>
 
 <div class="info">
-<b>Name:</b> Arpit Kumar
+<b id="nameLabel">Name:</b> ####
 </div>
 
 <div class="info">
-<b>State:</b> Odisha
+<b id="stateLabel">State:</b> ####
 </div>
 
 <div class="info">
-<b>Constituency:</b> Bhubaneswar
+<b id="constituencyLabel">Constituency:</b> ####
 </div>
 
 <div class="info">
-<b>Age:</b> 18+
+<b id="ageLabel">Age:</b> 18+
 </div>
 
-<div class="verify">
+<div class="verify" id="eligibleText">
 ✔ Eligible to Vote
 </div>
 
-<button onclick="window.location.href='home.html'">
+<button onclick="window.location.href='home.html'" id="continueBtn">
 
 Continue to Voting
 
 </button>
 
 </div>
+
+<script>
+
+function getTranslation(key){
+
+const lang = localStorage.getItem("lang") || "english";
+
+const translations = {
+
+english:{
+verifyTitle:"Citizen Verification",
+nameLabel:"Name:",
+stateLabel:"State:",
+constituencyLabel:"Constituency:",
+ageLabel:"Age:",
+eligibleText:"✔ Eligible to Vote",
+continueBtn:"Continue to Voting"
+},
+
+hindi:{
+verifyTitle:"नागरिक सत्यापन",
+nameLabel:"नाम:",
+stateLabel:"राज्य:",
+constituencyLabel:"निर्वाचन क्षेत्र:",
+ageLabel:"आयु:",
+eligibleText:"✔ मतदान के लिए योग्य",
+continueBtn:"मतदान जारी रखें"
+},
+
+odia:{
+verifyTitle:"ନାଗରିକ ଯାଞ୍ଚ",
+nameLabel:"ନାମ:",
+stateLabel:"ରାଜ୍ୟ:",
+constituencyLabel:"ନିର୍ବାଚନ ମଣ୍ଡଳୀ:",
+ageLabel:"ବୟସ:",
+eligibleText:"✔ ଭୋଟ ଦେବାକୁ ଯୋଗ୍ୟ",
+continueBtn:"ଭୋଟିଂ ଜାରି ରଖନ୍ତୁ"
+},
+
+bengali:{
+verifyTitle:"নাগরিক যাচাই",
+nameLabel:"নাম:",
+stateLabel:"রাজ্য:",
+constituencyLabel:"নির্বাচনী এলাকা:",
+ageLabel:"বয়স:",
+eligibleText:"✔ ভোট দেওয়ার যোগ্য",
+continueBtn:"ভোটিং চালিয়ে যান"
+},
+
+tamil:{
+verifyTitle:"குடிமகன் சரிபார்ப்பு",
+nameLabel:"பெயர்:",
+stateLabel:"மாநிலம்:",
+constituencyLabel:"தொகுதி:",
+ageLabel:"வயது:",
+eligibleText:"✔ வாக்களிக்க தகுதியானவர்",
+continueBtn:"வாக்களிப்பைத் தொடரவும்"
+},
+
+telugu:{
+verifyTitle:"పౌర ధృవీకరణ",
+nameLabel:"పేరు:",
+stateLabel:"రాష్ట్రం:",
+constituencyLabel:"నియోజకవర్గం:",
+ageLabel:"వయసు:",
+eligibleText:"✔ వోటు వేయడానికి అర్హత",
+continueBtn:"వోటింగ్ కొనసాగించండి"
+},
+
+marathi:{
+verifyTitle:"नागरिक पडताळणी",
+nameLabel:"नाव:",
+stateLabel:"राज्य:",
+constituencyLabel:"मतदारसंघ:",
+ageLabel:"वय:",
+eligibleText:"✔ मतदानासाठी पात्र",
+continueBtn:"मतदान सुरू ठेवा"
+},
+
+gujarati:{
+verifyTitle:"નાગરિક ચકાસણી",
+nameLabel:"નામ:",
+stateLabel:"રાજ્ય:",
+constituencyLabel:"મતદાર વિસ્તાર:",
+ageLabel:"ઉંમર:",
+eligibleText:"✔ મત આપવા માટે પાત્ર",
+continueBtn:"મતદાન ચાલુ રાખો"
+},
+
+punjabi:{
+verifyTitle:"ਨਾਗਰਿਕ ਤਸਦੀਕ",
+nameLabel:"ਨਾਮ:",
+stateLabel:"ਰਾਜ:",
+constituencyLabel:"ਹਲਕਾ:",
+ageLabel:"ਉਮਰ:",
+eligibleText:"✔ ਵੋਟ ਦੇਣ ਲਈ ਯੋਗ",
+continueBtn:"ਵੋਟਿੰਗ ਜਾਰੀ ਰੱਖੋ"
+},
+
+malayalam:{
+verifyTitle:"പൗരസ്ഥിരീകരണം",
+nameLabel:"പേര്:",
+stateLabel:"സംസ്ഥാനം:",
+constituencyLabel:"സീറ്റ്:",
+ageLabel:"വയസ്:",
+eligibleText:"✔ വോട്ട് ചെയ്യാൻ അർഹതയുള്ളത്",
+continueBtn:"വോട്ടിംഗ് തുടരുക"
+},
+
+kannada:{
+verifyTitle:"ನಾಗರಿಕ ದೃಢೀಕರಣ",
+nameLabel:"ಹೆಸರು:",
+stateLabel:"ರಾಜ್ಯ:",
+constituencyLabel:"ಕ್ಷೇತ್ರ:",
+ageLabel:"ವಯಸ್ಸು:",
+eligibleText:"✔ ಮತ ಚಲಾಯಿಸಲು ಅರ್ಹ",
+continueBtn:"ಮತದಾನವನ್ನು ಮುಂದುವರಿಸಿ"
+},
+
+assamese:{
+verifyTitle:"নাগৰিক পৰীক্ষা",
+nameLabel:"নাম:",
+stateLabel:"ৰাজ্য:",
+constituencyLabel:"নিৰ্বাচনী এলেকা:",
+ageLabel:"বয়স:",
+eligibleText:"✔ ভোট দিবলৈ যোগ্য",
+continueBtn:"ভোটিং চলাই যাওক"
+},
+
+urdu:{
+verifyTitle:"شہری کی تصدیق",
+nameLabel:"نام:",
+stateLabel:"ریاست:",
+constituencyLabel:"حلقہ:",
+ageLabel:"عمر:",
+eligibleText:"✔ ووٹ دینے کے اہل",
+continueBtn:"ووٹنگ جاری رکھیں"
+},
+
+sanskrit:{
+verifyTitle:"नागरिकप्रमाणीकरणम्",
+nameLabel:"नाम:",
+stateLabel:"राज्यम्:",
+constituencyLabel:"क्षेत्रम्:",
+ageLabel:"वयः:",
+eligibleText:"✔ मतदानाय योग्यम्",
+continueBtn:"मतदानं निरन्तरं कुर्वन्तु"
+},
+
+konkani:{
+verifyTitle:"नागरिक पडताळणी",
+nameLabel:"नाव:",
+stateLabel:"राज्य:",
+constituencyLabel:"मतदारसंघ:",
+ageLabel:"वय:",
+eligibleText:"✔ मतदानासाठी पात्र",
+continueBtn:"मतदान सुरू ठेवा"
+},
+
+kashmiri:{
+verifyTitle:"شہری تصدیق",
+nameLabel:"ناو:",
+stateLabel:"ریاست:",
+constituencyLabel:"حلقہ:",
+ageLabel:"عمر:",
+eligibleText:"✔ ووٹ دینے کے اہل",
+continueBtn:"ووٹنگ جاری رکھیں"
+},
+
+manipuri:{
+verifyTitle:"নাগৰিক পৰীক্ষা",
+nameLabel:"নাম:",
+stateLabel:"ৰাজ্য:",
+constituencyLabel:"নিৰ্বাচনী এলেকা:",
+ageLabel:"বয়স:",
+eligibleText:"✔ ভোট দিবলৈ যোগ্য",
+continueBtn:"ভোটিং চলাই যাওক"
+}
+
+};
+
+return translations[lang]?.[key] || translations.english[key];
+
+}
+
+function applyLanguage(){
+
+document.getElementById("verifyTitle").innerText = getTranslation("verifyTitle");
+document.getElementById("nameLabel").innerText = getTranslation("nameLabel");
+document.getElementById("stateLabel").innerText = getTranslation("stateLabel");
+document.getElementById("constituencyLabel").innerText = getTranslation("constituencyLabel");
+document.getElementById("ageLabel").innerText = getTranslation("ageLabel");
+document.getElementById("eligibleText").innerText = getTranslation("eligibleText");
+document.getElementById("continueBtn").innerText = getTranslation("continueBtn");
+
+}
+
+applyLanguage();
+
+</script>
 
 </body>
 </html>
